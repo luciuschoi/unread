@@ -134,7 +134,7 @@ module Unread
             rm = read_mark(reader) || read_marks.build
             rm.reader_id   = reader.id
             rm.reader_type = reader.class.base_class.name
-            rm.timestamp   = self.send(readable_options[:on])
+            rm.timestamp   = self.send(readable_options[:on]) + 1.second
             rm.save!
           end
         end
