@@ -36,7 +36,7 @@ module Unread
       def mark_collection_item_as_read(obj, reader, timestamp)
         marking_proc = proc {
           rm = obj.read_marks.find_or_initialize_by(reader: reader)
-          rm.timestamp = timestamp
+          rm.timestamp = timestamp + 1.second
           rm.save!
         }
 
