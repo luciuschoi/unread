@@ -22,7 +22,8 @@ module Unread
 
           collection.each do |obj|
             raise ArgumentError unless obj.is_a?(self)
-            timestamp = obj.send(readable_options[:on])
+            #timestamp = obj.send(readable_options[:on])
+            timestamp = DateTime.now
 
             if global_timestamp && global_timestamp >= timestamp
               # The object is implicitly marked as read, so there is nothing to do
