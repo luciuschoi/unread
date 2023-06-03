@@ -27,8 +27,8 @@ module Unread
     # Look for those readers with at least one single read mark
     def readers_to_cleanup(reader_class)
       reader_class.
-        joins(:read_marks).
         reader_scope.
+        joins(:read_marks).
         where(ReadMark.table_name => { readable_type: readable_class.name }).
         group("#{ReadMark.quoted_table_name}.reader_type, #{ReadMark.quoted_table_name}.reader_id, #{reader_class.quoted_table_name}.#{reader_class.quoted_primary_key}").
         having("COUNT(#{ReadMark.quoted_table_name}.id) > 1").
